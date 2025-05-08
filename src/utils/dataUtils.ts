@@ -4,6 +4,7 @@ export interface UserData {
   birthDate: string;
   motherName: string;
   cpf: string;
+  gender?: string;
 }
 
 export const storeUserData = (data: UserData): void => {

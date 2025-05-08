@@ -26,6 +26,17 @@ const PG2: React.FC = () => {
     window.open('https://your-redirect.com', '_blank');
   };
 
+  // Obter as iniciais do nome para o avatar
+  const getInitials = (name: string) => {
+    const nameParts = name.split(' ');
+    if (nameParts.length >= 2) {
+      return `${nameParts[0][0]}${nameParts[1][0]}`.toUpperCase();
+    }
+    return nameParts[0][0].toUpperCase();
+  };
+  
+  const initials = getInitials(userData.name);
+
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Header */}
@@ -44,7 +55,7 @@ const PG2: React.FC = () => {
               <p className="text-sm">{userData.cpf}</p>
             </div>
             <div className="bg-purple-600 text-white w-10 h-10 rounded-full flex items-center justify-center">
-              <span>EV</span>
+              <span>{initials}</span>
             </div>
           </div>
         </div>
