@@ -20,8 +20,21 @@ export const verifyCpf = async (cpf: string): Promise<UserData> => {
     }
     
     const data = await response.json();
+    console.log("Resposta do webhook:", data);
     
     // Verifica se a resposta contém os dados esperados
+    if (data && data.status === 200) {
+      // Mapeia os dados do webhook para o formato esperado pelo aplicativo
+      return {
+        name: data.nome,
+        birthDate: convertBrazilianDateToISO(data.nascimento),
+        motherName: data.mae,
+        cpf: data.cpf,
+        gender: data.sexo
+      };
+    }
+    
+    // Verificação alternativa para quando a resposta vem em formato de array
     if (Array.isArray(data) && data.length > 0 && data[0].status === 200) {
       const userData = data[0];
       
