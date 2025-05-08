@@ -4,28 +4,36 @@ import { useState, useEffect } from "react";
 const MOBILE_BREAKPOINT = 768;
 
 export function useIsMobile() {
-  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
     
-    const onChange = () => {
+    const checkMobile = () => {
       setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
     };
     
     // Verificar imediatamente para evitar flash na UI
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+    checkMobile();
     
     // Adicionar listener para mudanças de tamanho da tela
+    window.addEventListener("resize", checkMobile);
+    
     if (mql.addEventListener) {
-      mql.addEventListener("change", onChange);
-      return () => mql.removeEventListener("change", onChange);
+      mql.addEventListener("change", checkMobile);
+      return () => {
+        mql.removeEventListener("change", checkMobile);
+        window.removeEventListener("resize", checkMobile);
+      };
     } else {
       // Fallback para navegadores que não suportam addEventListener no MediaQueryList
-      mql.addListener(onChange);
-      return () => mql.removeListener(onChange);
+      mql.addListener(checkMobile);
+      return () => {
+        mql.removeListener(checkMobile);
+        window.removeEventListener("resize", checkMobile);
+      };
     }
   }, []);
 
-  return !!isMobile;
+  return isMobile;
 }

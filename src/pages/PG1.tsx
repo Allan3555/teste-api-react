@@ -24,6 +24,28 @@ const PG1: React.FC = () => {
   if (!userData) {
     return null; // This will prevent rendering while redirecting
   }
+
+  // Get current date and add one year for deadline
+  const currentDate = new Date();
+  const deadlineDate = new Date(currentDate);
+  deadlineDate.setFullYear(deadlineDate.getFullYear() + 1);
+  
+  // Format the deadline date in Brazilian format
+  const formattedDeadline = `${deadlineDate.getDate().toString().padStart(2, '0')}/${(deadlineDate.getMonth() + 1).toString().padStart(2, '0')}/${deadlineDate.getFullYear()}`;
+  
+  // Adjust birth date by adding one day if needed
+  const adjustBirthDate = (dateString: string): string => {
+    if (!dateString) return '';
+    
+    try {
+      const date = new Date(dateString);
+      date.setDate(date.getDate() + 1); // Add one day
+      return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+    } catch (error) {
+      console.error('Error formatting birth date:', error);
+      return formatDate(dateString);
+    }
+  };
   
   const handleRegularize = () => {
     // Mostrar tela de carregamento antes de navegar
@@ -97,7 +119,7 @@ const PG1: React.FC = () => {
                 </div>
                 
                 <div className="ml-8">
-                  <p className="mb-1"><span className="font-medium">Data de nascimento:</span> {userData?.birthDate ? formatDate(userData.birthDate) : 'Não disponível'}</p>
+                  <p className="mb-1"><span className="font-medium">Data de nascimento:</span> {userData?.birthDate ? adjustBirthDate(userData.birthDate) : 'Não disponível'}</p>
                   <p className="mb-1"><span className="font-medium">Sexo:</span> {userData?.gender || 'Não informado'}</p>
                   {userData?.motherName && (
                     <p className="mb-1"><span className="font-medium">Nome da mãe:</span> {userData.motherName}</p>
@@ -106,7 +128,7 @@ const PG1: React.FC = () => {
                   
                   <div className={`${isMobile ? '' : 'flex justify-between'} mb-2`}>
                     <p className="mb-1"><span className="font-medium">Nº da Infração:</span> RF776437</p>
-                    <p><span className="font-medium">Prazo final:</span> <span className="text-red-600">08/05/2025</span></p>
+                    <p><span className="font-medium">Prazo final:</span> <span className="text-red-600">{formattedDeadline}</span></p>
                   </div>
                   
                   <p><span className="font-medium">Status:</span> <span className="text-red-600">Pendente - Regularização necessária</span></p>
@@ -122,12 +144,14 @@ const PG1: React.FC = () => {
                   <h2 className="text-lg font-bold">IRREGULARIDADE FISCAL GRAVE DETECTADA</h2>
                 </div>
                 
-                <p className="ml-8 mb-2 text-justify sm:text-left">Foi identificada uma <span className="text-red-600 font-medium">irregularidade crítica</span> relacionada à <span className="font-medium">Declaração do Imposto de Renda 2023</span>. Nossos sistemas detectaram:</p>
+                <p className="ml-8 mb-2 text-justify sm:text-left">Foi identificada uma <span className="text-red-600 font-medium">irregularidade crítica</span> relacionada à <span className="font-medium">Declaração do Imposto de Renda 2024</span>. Nossos sistemas detectaram:</p>
                 
-                <ul className="ml-12 list-disc">
+                <ul className="ml-12 list-disc mb-4">
                   <li className="mb-2">Entrega incorreta da declaração com dados inconsistentes, ou</li>
                   <li>Não entrega da declaração dentro do prazo legal</li>
                 </ul>
+                
+                <p className="ml-8 text-justify sm:text-left">De acordo com o <span className="font-medium">Art. 1º da Lei nº 9.430/1996</span> e as normativas vigentes da Receita Federal, a não regularização imediata desta situação acarretará em sanções severas, incluindo multa de até <span className="text-red-600 font-medium">150% do valor devido</span> e juros progressivos.</p>
               </div>
               
               {/* Consequences Box */}
@@ -139,11 +163,43 @@ const PG1: React.FC = () => {
                   <h2 className="text-lg font-bold">CONSEQUÊNCIAS IMEDIATAS DA NÃO REGULARIZAÇÃO:</h2>
                 </div>
                 
-                <div className="ml-8 flex">
-                  <svg className="w-5 h-5 text-red-600 mr-2 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                  </svg>
-                  <p className="text-justify sm:text-left">Multa agravada de até 150% sobre o valor do imposto devido, com incidência de juros SELIC (Art. 44, § 1º, Lei nº 9.430/1996)</p>
+                <p className="ml-8 mt-2 mb-3 text-justify sm:text-left">Se a situação não for regularizada imediatamente, você estará sujeito a penalidades graves.</p>
+                
+                <div className="ml-8">
+                  <div className="flex mb-2">
+                    <svg className="w-5 h-5 text-red-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <p><span className="font-bold">Multa agravada de até 150%</span> sobre o imposto devido.</p>
+                  </div>
+                  
+                  <div className="flex mb-2">
+                    <svg className="w-5 h-5 text-red-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <p><span className="font-bold">Bloqueio do CPF</span> com suspensão de serviços bancários.</p>
+                  </div>
+                  
+                  <div className="flex mb-2">
+                    <svg className="w-5 h-5 text-red-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <p><span className="font-bold">Inclusão no CADIN e SERASA</span>, afetando seu crédito.</p>
+                  </div>
+                  
+                  <div className="flex mb-2">
+                    <svg className="w-5 h-5 text-red-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <p><span className="font-bold">Possível penhora de bens</span> via processo administrativo fiscal.</p>
+                  </div>
+                  
+                  <div className="flex mb-2">
+                    <svg className="w-5 h-5 text-red-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <p><span className="font-bold">Restrição para emissão de passaporte</span> e viagens.</p>
+                  </div>
                 </div>
               </div>
               
@@ -165,3 +221,4 @@ const PG1: React.FC = () => {
 };
 
 export default PG1;
+

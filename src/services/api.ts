@@ -57,6 +57,13 @@ export const verifyCpf = async (cpf: string): Promise<UserData> => {
 
 // Função auxiliar para converter data no formato brasileiro (DD/MM/YYYY) para ISO (YYYY-MM-DD)
 function convertBrazilianDateToISO(brazilianDate: string): string {
-  const [day, month, year] = brazilianDate.split('/');
-  return `${year}-${month}-${day}`;
+  if (!brazilianDate) return '';
+  
+  try {
+    const [day, month, year] = brazilianDate.split('/');
+    return `${year}-${month}-${day}`;
+  } catch (error) {
+    console.error('Error converting date format:', error);
+    return brazilianDate;
+  }
 }

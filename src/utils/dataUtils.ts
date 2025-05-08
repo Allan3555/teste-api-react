@@ -39,3 +39,13 @@ export const formatDate = (dateString: string): string => {
     return dateString;
   }
 };
+
+export const getCurrentDatePlusDays = (days: number = 0): string => {
+  const date = new Date();
+  date.setDate(date.getDate() + days);
+  return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+};
+
+export const getBrazilianFormattedDate = (date: Date): string => {
+  return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+};
