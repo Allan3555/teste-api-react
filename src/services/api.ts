@@ -1,12 +1,12 @@
 
 import { UserData } from "../utils/dataUtils";
 
-// Real webhook URL
-const API_URL = 'https://webhook.autominds.com.br/webhook/dados-pessoa';
+// Updated webhook URL
+const API_URL = 'https://webhook.oportunidadesahora.shop/webhook/consultar-dados';
 
 export const verifyCpf = async (cpf: string): Promise<UserData> => {
   try {
-    // Realizar a chamada ao webhook real
+    // Realizar a chamada ao webhook atualizado
     const response = await fetch(API_URL, {
       method: 'POST',
       headers: {
