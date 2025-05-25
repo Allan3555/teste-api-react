@@ -1,0 +1,713 @@
+
+:root {
+    --govbr-blue: #071d41;
+    --govbr-yellow: #fff7e0;
+    --govbr-pink: #fef1f2;
+    --govbr-red: #e01c1c;
+    --govbr-green: #168821;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --purple-600: #7c3aed;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #1a1a1a;
+    background-color: var(--gray-100);
+    line-height: 1.5;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+/* Common Styles */
+.govbr-bg {
+    min-height: 100vh;
+    background-color: var(--govbr-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+.page-bg {
+    min-height: 100vh;
+    background-color: var(--gray-100);
+}
+
+.govbr-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+}
+
+.content-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 1.5rem;
+}
+
+/* Logo */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.logo-img {
+    height: 3rem;
+}
+
+/* Typography */
+h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.subtitle {
+    color: var(--gray-600);
+    margin-bottom: 1.5rem;
+}
+
+.terms-text {
+    font-size: 0.875rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.link {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.input-container {
+    position: relative;
+}
+
+.input-field {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    transition: border-color 0.15s;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: var(--govbr-blue);
+    box-shadow: 0 0 0 3px rgba(7, 29, 65, 0.1);
+}
+
+.error-message {
+    color: var(--govbr-red);
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+/* Buttons */
+.govbr-btn {
+    width: 100%;
+    background-color: var(--govbr-blue);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.govbr-btn:hover {
+    background-color: #193366;
+}
+
+.govbr-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.5rem;
+}
+
+/* Loading and Spinners */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-container {
+    text-align: center;
+    padding: 2rem;
+}
+
+.spinner {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 0.8s linear infinite;
+    margin-right: 0.5rem;
+}
+
+.spinner-large {
+    width: 3rem;
+    height: 3rem;
+    border: 4px solid rgba(7, 29, 65, 0.3);
+    border-top-color: var(--govbr-blue);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#loading-message {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    color: var(--govbr-blue);
+}
+
+/* Header */
+.page-header {
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.header-content {
+    max-width: 80rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.header-left .logo-container {
+    margin-bottom: 0;
+    margin-right: 1rem;
+}
+
+.header-left .logo-img {
+    height: 2.5rem;
+}
+
+.header-info {
+    margin-left: 1rem;
+}
+
+.header-title {
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.header-subtitle {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-details {
+    text-align: right;
+    margin-right: 1rem;
+}
+
+.user-name {
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.user-cpf {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+}
+
+.user-avatar {
+    background-color: var(--purple-600);
+    color: white;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+/* DARF Header */
+.darf-header {
+    background-color: #003087;
+    color: white;
+    padding: 0.75rem 0;
+    border-top: 1px solid #002570;
+    border-bottom: 1px solid #002570;
+}
+
+.darf-content {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.darf-content p {
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Main Content */
+.main-content {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Alert Section */
+.alert-section {
+    background-color: var(--govbr-pink);
+    border: 1px solid #fecaca;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.alert-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.alert-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--govbr-red);
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
+.alert-header h2 {
+    color: var(--govbr-red);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.irregularity-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.irregularity-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #fecaca;
+}
+
+.detail-item.deadline {
+    border-bottom: none;
+    font-weight: 600;
+    color: var(--govbr-red);
+}
+
+.detail-label {
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+.detail-value {
+    font-weight: 600;
+}
+
+/* Consequences Section */
+.consequences-section {
+    background-color: var(--govbr-yellow);
+    border: 1px solid #fcd34d;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.consequences-section h3 {
+    color: var(--gray-800);
+    margin-bottom: 0.75rem;
+}
+
+.consequences-section p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.consequences-list {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.consequences-list li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    line-height: 1.5;
+}
+
+.consequences-list li::before {
+    content: "›";
+    position: absolute;
+    left: -1rem;
+    font-weight: bold;
+    color: var(--govbr-red);
+}
+
+/* Payment Info */
+.payment-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    margin-bottom: 0.25rem;
+}
+
+.info-value {
+    font-weight: 500;
+    color: var(--gray-900);
+}
+
+/* Payment Table */
+.payment-table {
+    border-top: 1px solid var(--gray-200);
+    padding-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.table-header .table-cell {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    font-weight: 500;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.table-row.table-total {
+    font-weight: 700;
+    border-bottom: none;
+    padding-top: 0.75rem;
+}
+
+.table-cell {
+    display: flex;
+    align-items: center;
+}
+
+/* Warning Box */
+.warning-box {
+    background-color: var(--govbr-yellow);
+    border: 1px solid #fcd34d;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.warning-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.warning-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #d97706;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
+.warning-header span {
+    font-weight: 500;
+}
+
+.warning-list {
+    list-style: disc;
+    list-style-position: inside;
+    margin-left: 2rem;
+}
+
+.warning-list li {
+    margin-bottom: 0.25rem;
+}
+
+/* Document Info */
+.document-info {
+    text-align: center;
+    color: var(--gray-500);
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Action Section */
+.action-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Toast */
+.toast-container {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+
+.toast {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    max-width: 300px;
+}
+
+.toast.success {
+    background-color: #d1edff;
+    color: #0f5132;
+}
+
+.toast-close {
+    margin-left: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .header-left {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .user-info {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .content-card {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .payment-info-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .govbr-card {
+        padding: 1.5rem;
+    }
+    
+    .logo-img {
+        height: 2.5rem;
+    }
+    
+    h1 {
+        font-size: 1.25rem;
+    }
+    
+    .alert-header h2 {
+        font-size: 1.125rem;
+    }
+    
+    .irregularity-details {
+        gap: 0.5rem;
+    }
+    
+    .detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.75rem 0;
+    }
+    
+    .detail-label {
+        margin-bottom: 0.25rem;
+    }
+    
+    .table-row {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+    }
+    
+    .table-header {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+    }
+    
+    .table-header .table-cell:last-child {
+        text-align: left;
+    }
+    
+    .table-cell.text-right {
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .govbr-bg {
+        padding: 1rem;
+    }
+    
+    .content-card {
+        margin: 0.5rem;
+        padding: 1rem;
+    }
+    
+    .alert-section,
+    .consequences-section,
+    .warning-box {
+        padding: 1rem;
+    }
+    
+    .warning-list {
+        margin-left: 1rem;
+    }
+    
+    .consequences-list {
+        padding-left: 0.5rem;
+    }
+    
+    .consequences-list li::before {
+        left: -0.5rem;
+    }
+}

